@@ -1,17 +1,19 @@
 package br.com.eduardo.controleMembros.model;
 
 public class Endereco {
-	private Integer codigoEndereco;
+	private Integer id;
 	private String logradouro;
 	private Integer numero;
+	private String complemento;
 	private String bairro;
-	private Membro membro;
-	
-	public Integer getCodigoEndereco() {
-		return codigoEndereco;
+	private String cidade;
+	private String estado;
+	private Integer membro;
+	public Integer getId() {
+		return id;
 	}
-	public void setCodigoEndereco(Integer codigoEndereco) {
-		this.codigoEndereco = codigoEndereco;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public String getLogradouro() {
 		return logradouro;
@@ -25,16 +27,34 @@ public class Endereco {
 	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
+	public String getComplemento() {
+		return complemento;
+	}
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
 	public String getBairro() {
 		return bairro;
 	}
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
-	public Membro getMembro() {
+	public String getCidade() {
+		return cidade;
+	}
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	public Integer getMembro() {
 		return membro;
 	}
-	public void setMembro(Membro membro) {
+	public void setMembro(Integer membro) {
 		this.membro = membro;
 	}
 	@Override
@@ -42,7 +62,10 @@ public class Endereco {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((bairro == null) ? 0 : bairro.hashCode());
-		result = prime * result + ((codigoEndereco == null) ? 0 : codigoEndereco.hashCode());
+		result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
+		result = prime * result + ((complemento == null) ? 0 : complemento.hashCode());
+		result = prime * result + ((estado == null) ? 0 : estado.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((logradouro == null) ? 0 : logradouro.hashCode());
 		result = prime * result + ((membro == null) ? 0 : membro.hashCode());
 		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
@@ -62,10 +85,25 @@ public class Endereco {
 				return false;
 		} else if (!bairro.equals(other.bairro))
 			return false;
-		if (codigoEndereco == null) {
-			if (other.codigoEndereco != null)
+		if (cidade == null) {
+			if (other.cidade != null)
 				return false;
-		} else if (!codigoEndereco.equals(other.codigoEndereco))
+		} else if (!cidade.equals(other.cidade))
+			return false;
+		if (complemento == null) {
+			if (other.complemento != null)
+				return false;
+		} else if (!complemento.equals(other.complemento))
+			return false;
+		if (estado == null) {
+			if (other.estado != null)
+				return false;
+		} else if (!estado.equals(other.estado))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (logradouro == null) {
 			if (other.logradouro != null)
@@ -85,5 +123,5 @@ public class Endereco {
 		return true;
 	}
 	
-
+	
 }

@@ -3,7 +3,7 @@ package br.com.eduardo.controleMembros.model;
 import java.time.LocalDate;
 
 public class Membro {
-	private Long codigoMembro;
+	private Long id;
 	private String nome;
 	private Integer endereco;
 	private String telefoneResidencial;
@@ -11,6 +11,7 @@ public class Membro {
 	private LocalDate dataNascimento;
 	private byte[]foto;
 	private Integer idProfissao;
+	
 	public Integer getIdProfissao() {
 		return idProfissao;
 	}
@@ -18,10 +19,10 @@ public class Membro {
 		this.idProfissao = idProfissao;
 	}
 	public Long getCodigoMembro() {
-		return codigoMembro;
+		return id;
 	}
 	public void setCodigoMembro(Long codigoMembro) {
-		this.codigoMembro = codigoMembro;
+		this.id = codigoMembro;
 	}
 	public String getNome() {
 		return nome;
