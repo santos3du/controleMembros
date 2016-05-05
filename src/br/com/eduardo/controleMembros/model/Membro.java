@@ -2,27 +2,29 @@ package br.com.eduardo.controleMembros.model;
 
 import java.time.LocalDate;
 
+
+/*
+ * Classe modelo para o cadastro de Membros
+ * @author : Eduardo Santos
+ * data da criação: 03/05/2016
+ * 
+ */
 public class Membro {
-	private Long id;
+	private Integer id;
 	private String nome;
-	private Integer endereco;
+	private String endereco;
 	private String telefoneResidencial;
-	private String telefoneCelular;
+	private String celular;
 	private LocalDate dataNascimento;
 	private byte[]foto;
-	private Integer idProfissao;
-	
-	public Integer getIdProfissao() {
-		return idProfissao;
-	}
-	public void setIdProfissao(Integer idProfissao) {
-		this.idProfissao = idProfissao;
-	}
-	public Long getCodigoMembro() {
+	private String profissao;
+	private boolean isBatizado;
+	private boolean isDizimista;
+	public Integer getId() {
 		return id;
 	}
-	public void setCodigoMembro(Long codigoMembro) {
-		this.id = codigoMembro;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public String getNome() {
 		return nome;
@@ -30,11 +32,10 @@ public class Membro {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	public Integer getEndereco() {
+	public String getEndereco() {
 		return endereco;
 	}
-	public void setEndereco(Integer endereco) {
+	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
 	public String getTelefoneResidencial() {
@@ -43,11 +44,11 @@ public class Membro {
 	public void setTelefoneResidencial(String telefoneResidencial) {
 		this.telefoneResidencial = telefoneResidencial;
 	}
-	public String getTelefoneCelular() {
-		return telefoneCelular;
+	public String getCelular() {
+		return celular;
 	}
-	public void setTelefoneCelular(String telefoneCelular) {
-		this.telefoneCelular = telefoneCelular;
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 	public LocalDate getDataNascimento() {
 		return dataNascimento;
@@ -61,6 +62,23 @@ public class Membro {
 	public void setFoto(byte[] foto) {
 		this.foto = foto;
 	}
-	
+	public String getProfissao() {
+		return profissao;
+	}
+	public void setProfissao(String idProfissao) {
+		this.profissao = idProfissao;
+	}
+	public boolean isBatizado() {
+		return isBatizado;
+	}
+	public void setBatizado(boolean isBatizado) {
+		this.isBatizado = isBatizado;
+	}
+	public boolean isDizimista() {
+		return isDizimista;
+	}
+	public void setDizimista(boolean isDizimista) {
+		this.isDizimista = isDizimista;
+	}
 
-}
+}	

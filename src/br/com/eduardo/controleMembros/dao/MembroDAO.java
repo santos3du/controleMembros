@@ -18,19 +18,21 @@ public class MembroDAO {
 	}
 
 	public void adiciona(Membro membro) {
-		String sql = "insert into membro (nome,idEndereco,telefoneResidencial,celular,dataNascimento, foto,idProfissao)"
-				+ "values(?,?,?,?,?,?,?,?)";
+		String sql = "insert into membro (nome,endereco,telefoneResidencial,celular,dataNascimento, foto,profissao,isBatizado, isDizimista)"
+				+ "values(?,?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement pstm = connection.prepareStatement(sql);
 			pstm.setString(1, membro.getNome());
-			pstm.setInt(2, membro.getEndereco());
+			pstm.setString(2, membro.getEndereco());
 			pstm.setString(3, membro.getTelefoneResidencial());
-			pstm.setString(4, membro.getTelefoneCelular());
+			pstm.setString(4, membro.getCelular());
 			pstm.setDate(5, java.sql.Date.valueOf(membro.getDataNascimento()));
 			pstm.setBytes(6, membro.getFoto());
-			pstm.setInt(7, membro.getIdProfissao());
-
-			// executa o prepare Statement
+			pstm.setString(7, membro.getProfissao());
+			pstm.setBoolean(8, membro.isBatizado());
+			pstm.setBoolean(9, membro.isDizimista());
+			
+			// executa o prepared Statement
 			pstm.execute();
 			pstm.close();
 
@@ -42,7 +44,7 @@ public class MembroDAO {
 	public void exclui(Membro membro) {
 		try {
 			PreparedStatement pstm = connection.prepareStatement("delete from membro where id=?");
-			pstm.setLong(1, membro.getCodigoMembro());
+			pstm.setInt(1, membro.getId());
 			pstm.execute();
 			pstm.close();
 
@@ -58,13 +60,13 @@ public class MembroDAO {
 					"update membro set nome=?, idEndereco=?,telefoneResidencial=?,celular=?,dataNascimento=?, foto=?,idProfissao=?	"
 							+ "where codigoMembro=? ");
 			pstm.setString(1, membro.getNome());
-			pstm.setInt(2, membro.getEndereco());
+			pstm.setString(2, membro.getEndereco());
 			pstm.setString(3, membro.getTelefoneResidencial());
-			pstm.setString(4, membro.getTelefoneCelular());
+			pstm.setString(4, membro.getCelular());
 			pstm.setDate(5, java.sql.Date.valueOf(membro.getDataNascimento()));
 			pstm.setBytes(6, membro.getFoto());
-			pstm.setInt(6, membro.getIdProfissao());
-			pstm.setLong(7, membro.getCodigoMembro());
+			pstm.setString(6, membro.getProfissao());
+			pstm.setLong(7, membro.getId());
 			pstm.execute();
 			pstm.close();
 		} catch (SQLException e) {
@@ -73,7 +75,7 @@ public class MembroDAO {
 	}
 
 	public List<Membro> listarMembros(){
-		//TODO: Terminar mÃ©todo de listagem
+		//TODO: Terminar método de listagem
 		try{
 			List<Membro> listaMembros = new ArrayList<Membro>();
 			PreparedStatement pstm = connection.prepareStatement("select * from membro");
@@ -81,15 +83,25 @@ public class MembroDAO {
 			
 			while(rs.next()){
 				Membro membro = new Membro();
-				membro.setCodigoMembro(rs.getLong("id"));
+				membro.setId(rs.getInt("id"));
 				membro.setNome(rs.getString("nome"));
 				membro.setTelefoneResidencial(rs.getString("telefoneResidencial"));
-				membro.setTelefoneCelular(rs.getString("telefoneCelular"));
-				membro.setDataNascimento(java.sql.Date.valueOf(rs.getDate("dataNascimento")));
-				
-					
-					
+				membro.	setCelular(rs.getString("telefoneCelular"));
+				membro.setDataNascimento(rs.getDate("dataNascimento").toLocalDate());
+				membro.setFoto(rs.getBytes("foto"));
+				membro.setProfissao(rs.getString("profissao"));
+				membro.setBatizado(true);
+				membro.setDizimista(true);
+				listaMembros.add(membro);
 			}
+			
+			rs.close();
+			pstm.close();
+			
+			return listaMembros;
+			
+		}catch(SQLException e){
+			throw new RuntimeException(e);
 		}
 	}
 }

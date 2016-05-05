@@ -6,7 +6,7 @@ public class ConnectionFactoryTest {
 	public static void main(String[] args) {
 		Connection con = new ConnectionFactory().getConnection();
 		if(con != null){
-			System.out.println("Conex√£o aberta");
+			System.out.println("Conex„o aberta");
 		}else{
 			System.out.println("Falha ao conectar no banco de dados.");
 		}
